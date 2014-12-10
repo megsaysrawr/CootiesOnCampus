@@ -22,3 +22,11 @@ for t = 2 : T
     infected(t) = infected(t-1) + f;
     healthy(t) = healthy(t-1) - f + incoming_healthy;
 end
+
+hold on;
+plot(ma_boys + infected, '*-r');
+plot(healthy,'*-b');
+legend('Infected', 'Healthy');
+xlabel('Years');
+ylabel('Peeps');
+title('Iteration 1');
