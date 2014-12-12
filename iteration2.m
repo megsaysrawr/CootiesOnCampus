@@ -22,9 +22,9 @@ for t = 2 : T
     f = 2*ma_boys(t-1);  % function of newly infected each year
     
     % Graduating 1/4 of each stock
-    grad_ma_boys = 1/4*ma_boys(t-1);
-    grad_infect = 1/4*infected(t-1);
-    grad_health = 1/4*healthy(t-1);
+    grad_ma_boys = round(1/4*ma_boys(t-1));
+    grad_infect = round(1/4*infected(t-1));
+    grad_health = round(1/4*healthy(t-1));
     
     % Updating numbers after graduation
     ma_boys(t) = ma_boys(t-1) - grad_ma_boys;
@@ -34,7 +34,7 @@ for t = 2 : T
     ma_boys(t) = ma_boys(t) + incoming_ma_boys;
     infected(t) = infected(t) + f;
     healthy(t) = healthy(t) - f + incoming_healthy;
-    total = ma_boys + healthy + infected;
+    total = round(ma_boys) + round(healthy) + round(infected);
 end
 
 clf;
