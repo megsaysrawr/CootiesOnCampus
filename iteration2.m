@@ -34,7 +34,7 @@ for t = 2 : T
     ma_boys(t) = ma_boys(t) + incoming_ma_boys;
     infected(t) = infected(t) + f;
     healthy(t) = healthy(t) - f + incoming_healthy;
-    total = round(ma_boys) + round(healthy) + round(infected);
+    total = ma_boys + healthy + infected;
 end
 
 clf;
