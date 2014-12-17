@@ -21,9 +21,9 @@ res = sol(:,:,1);
 % --------------------------------------------------------------
 function [c,f,s] = pde_system(x,t,u,DuDx)
 c = [1;1;1];    % ??
-f = [D;D;D];
+f = [D*DuDx(1);D*DuDx(2);D*DuDx(3)];
 %THIS IS WHERE WE STOPPED WITH JOSH
-s = [- beta * initial_H * initial_I; beta * initial_H * initial_I - r * initial_I; r * initial_I];  % ??
+s = [- beta * u(1) * u(2); beta * u(1) * u(2)- (r * u(2)); r * u(2)];  % ??
 end
 % --------------------------------------------------------------
 function u0 = pde1ic(x)
@@ -37,9 +37,9 @@ end
 % --------------------------------------------------------------
 function [pl,ql,pr,qr] = pde1bc(xl,ul,xr,ur,t)
     %each vector includes H, I, R
-pl = [.8;0;0]; %p is coefficient of the concentration
-ql = [0;0;0]; %q coefficient of the flux
-pr = [0;.8;0]; %l is the left side, r is the right side.
-qr = [0;0;0];
+pl = [0;0;0]; %p is coefficient of the concentration
+ql = [1;1;1]; %q coefficient of the flux
+pr = [0;0;0]; %l is the left side, r is the right side.
+qr = [1;1;1];
 end
 end
