@@ -6,7 +6,7 @@
 % Studio13PDE1(.1, 1, 1, x, t)
 % Total dye is a constant (barring numerical error), which makes sense
 % because we only added dye once
-function res = pdepe_cooties(initial_u,infection_rate, diffusion_rate, recovery_rate, xmesh, tspan)
+function [H, I, R] = pdepe_cooties(initial_u,infection_rate, diffusion_rate, recovery_rate, xmesh, tspan)
 m = 0;  % structure of pde, m = 0, 1, or 2 (we always use 0)
 initial_H = initial_u(1);
 initial_I = initial_u(2);
@@ -16,7 +16,9 @@ r = recovery_rate;
 beta = infection_rate;
 sol = pdepe(m,@pde_system,@pde1ic,@pde1bc,xmesh,tspan);
 % Extract the first solution component as u.
-res = sol(:,:,1);
+H = sol(:,:,1);
+I = sol(:,:,2);
+R = sol(:,:,3);
 
 % --------------------------------------------------------------
 function [c,f,s] = pde_system(x,t,u,DuDx)
