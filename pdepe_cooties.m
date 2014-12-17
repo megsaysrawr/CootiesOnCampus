@@ -20,26 +20,26 @@ res = sol(:,:,1);
 
 % --------------------------------------------------------------
 function [c,f,s] = pde_system(x,t,u,DuDx)
-c = [1,1,1];    % ??
-f = [D,D,D];
+c = [1;1;1];    % ??
+f = [D;D;D];
 %THIS IS WHERE WE STOPPED WITH JOSH
-s = [- beta * initial_H * initial_I, beta * initial_H * initial_I - r * initial_I, r * initial_I];  % ??
+s = [- beta * initial_H * initial_I; beta * initial_H * initial_I - r * initial_I; r * initial_I];  % ??
 end
 % --------------------------------------------------------------
 function u0 = pde1ic(x)
 if (x>20) 
-    u0 = [0,0,.8];
+    u0 = [0;0;.8];
 else
-    u0 = [.8,0,0];
+    u0 = [.8;0;0];
 end
 end
      
 % --------------------------------------------------------------
 function [pl,ql,pr,qr] = pde1bc(xl,ul,xr,ur,t)
     %each vector includes H, I, R
-pl = [.8,0,0]; %p is coefficient of the concentration
-ql = [0,0,0]; %q coefficient of the flux
-pr = [0,.8,0]; %l is the left side, r is the right side.
-qr = [0,0,0];
+pl = [.8;0;0]; %p is coefficient of the concentration
+ql = [0;0;0]; %q coefficient of the flux
+pr = [0;.8;0]; %l is the left side, r is the right side.
+qr = [0;0;0];
 end
 end
