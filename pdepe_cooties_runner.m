@@ -3,9 +3,9 @@ function result = pdepe_cooties_runner()
 % Defining contstants
 infection_rate = .1;
 diffusion_rate = .5;
-recovery_rate = .01;
+recovery_rate = .05;
 x = 0:1:25;    % Position in meters
-t = 0:15:360;    % Time in minutes - first hour of party
+t = 0:5:240;    % Time in minutes - first hour of party
 
 [H, I, R] = pdepe_cooties(@find_initial_u, infection_rate, diffusion_rate, recovery_rate, x, t);
 
@@ -16,8 +16,9 @@ t = 0:15:360;    % Time in minutes - first hour of party
     end
 clf;
 surface(x,t,I)
-xlabel('Distance (m)');
+xlabel('Location (meters)');
 ylabel('Time (minutes)');
+title('Recovery Rate = .05');
 colorbar;
 
 end
