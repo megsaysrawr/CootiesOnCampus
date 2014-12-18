@@ -8,9 +8,9 @@
 % because we only added dye once
 function [H, I, R] = pdepe_cooties(initial_u,infection_rate, diffusion_rate, recovery_rate, xmesh, tspan)
 m = 0;  % structure of pde, m = 0, 1, or 2 (we always use 0)
-initial_H = initial_u(1);
-initial_I = initial_u(2);
-initial_R = initial_u(3);
+% initial_H = initial_u(1);
+% initial_I = initial_u(2);
+% initial_R = initial_u(3);
 D = diffusion_rate;
 r = recovery_rate;
 beta = infection_rate;
@@ -22,18 +22,24 @@ R = sol(:,:,3);
 
 % --------------------------------------------------------------
 function [c,f,s] = pde_system(x,t,u,DuDx)
-c = [1;1;1];    % ??
+c = [1;1;1];
 f = [D*DuDx(1);D*DuDx(2);D*DuDx(3)];
-%THIS IS WHERE WE STOPPED WITH JOSH
-s = [- beta * u(1) * u(2); beta * u(1) * u(2)- (r * u(2)); r * u(2)];  % ??
+s = [- beta * u(1) * u(2); beta * u(1) * u(2)- (r * u(2)); r * u(2)];
 end
 % --------------------------------------------------------------
 function u0 = pde1ic(x)
-if (x>20) 
-    u0 = [0;0;.8];
-else
-    u0 = [.8;0;0];
-end
+    i0 = x/25 * .8;
+    %h0 = i0; %just setting the size
+    h0 = .8 -i0;
+    r0 = 0;
+    
+    u0 = [h0; i0; r0];
+    
+% if (x>20) 
+%     u0 = [0;0;.8];
+% else
+%     u0 = [.8;0;0];
+% end
 end
      
 % --------------------------------------------------------------
