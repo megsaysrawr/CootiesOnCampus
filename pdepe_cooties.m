@@ -28,10 +28,9 @@ s = [- beta * u(1) * u(2); beta * u(1) * u(2)- (r * u(2)); r * u(2)];
 end
 % --------------------------------------------------------------
 function u0 = pde1ic(x)
-    i0 = x/25 * .8;
-    %h0 = i0; %just setting the size
-    h0 = .8 -i0;
-    r0 = 0;
+    i0 = x/25 * .8; % initial density of infected people
+    h0 = .8 -i0;    % initial density of healthy people
+    r0 = 0;         % initial density of recovered people
     
     u0 = [h0; i0; r0];
     
